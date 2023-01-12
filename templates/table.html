@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% endblock header %}
+
+{% block content %}
+<form action="" method="POST">{% csrf_token %}
+  <ul>
+    {% for item in tag %}
+    <div class="tag-list">
+      <li class="list">{{item.name}}</li>
+    </div>
+    {% endfor %}
+  </ul>
+</form>
+<div clas="detail-btn">
+  <a class="btn return-btn" href="{% url 'list' %}">戻る</a>
+</div>
+
+{% endblock content %}

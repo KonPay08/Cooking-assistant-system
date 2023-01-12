@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% endblock header %}
+
+{% block content %}
+<form action="" method="POST">{% csrf_token %}
+  <ul>
+    {% for item in tag %}
+    <div class="tag-list">
+      <li class="list">{{ item.name }}</li>
+      <button class="list-btn" type="submit" name="on"  value="{{ item.name }}" >入庫</button>
+      <button class="list-btn" type="submit" name="off"  value="{{ item.name }}" >使用</button>
+      <input class="" type="text" name="" value="{{item.count}}" readonly>
+    </div>
+    {% endfor %}
+  </ul>
+</form>
+<div clas="detail-btn">
+  <a class="btn return-btn" href="{% url 'list' %}">戻る</a>
+</div>
+
+{% endblock content %}

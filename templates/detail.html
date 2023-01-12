@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% endblock header %}
+
+{% block content %}
+
+<div class="detail-body">
+  <div class="detail-container">
+    <div class="detail-title">
+      <h1>{{ object.cooking_name }}</h1>
+    </div>
+    <div class="detail-image">
+      <img class="detail-img" src="{{ object.images.url }}">
+    </div>
+    <div class="detail-tag">
+      {% for item in object.tags.all  %}
+      <p>{{ item.name }}</p>
+      {% endfor %}
+      <p>{{ object.how | linebreaksbr }}</p>
+    </div>
+    <div clas="detail-btn">
+      <a class="btn return-btn" href="{% url 'list' %}">戻る</a>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

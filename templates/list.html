@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% endblock header %}
+
+{% block content %}
+
+<div class="list-body">
+  <div class="list-container">
+    <div class="list-link">
+      <a class="entry-btn" href="{% url 'tag' %}">食材登録</a>
+      <a class="entry-btn btn2" href="{% url 'table' %}">冷蔵庫</a>
+    </div>
+    <div class="line">
+      <p><span></span></p>
+    </div>
+    <div class="category-list">
+      <form action="" method="POST">{% csrf_token %}
+        <button class="btn category-btn" type="submit" name="key_word"  value="全て">全て</button>
+      {% for item1 in object_category %}
+          <button class="btn category-btn" type="submit" name="key_word"  value="{{ item1.category_name }}">{{ item1.category_name }}</button>
+      {% endfor  %}
+        </form>
+    </div>
+
+    <div class="list-content">
+      {% for item in object_list %}
+      <div class="item-container">
+        <a class=img-link href="{% url 'detail' item.id %}">
+          <div class="item-title">
+            <h2>{{ item.cooking_name }}</h2>
+          </div>
+          <div class="item-image">
+            <img class="img" src="{{ item.images.url }}">
+          </div>
+        </a>
+        <div class="item-content">
+          {% for item2 in item.tags.all %}
+          <p class="tag">{{ item2.name }}</p>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor  %}     
+    </div>
+  </div>
+</div>
+{% endblock content %}
