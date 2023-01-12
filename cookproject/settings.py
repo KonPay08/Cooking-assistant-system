@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure--!sz#0t%+yk5)m5$ll9t8w+=k-gl@ty2**qxj7u+ozo_wl&)gb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '*',
+    '.vercel.app'
+]
 
 
 # Application definition
@@ -75,10 +78,7 @@ WSGI_APPLICATION = 'cookproject.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    
 }
 
 
@@ -104,9 +104,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ja'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
 
@@ -120,6 +120,7 @@ USE_TZ = True
 
 STATIC_URL = '/staticfile/'
 STATICFILES_DIRS = [BASE_DIR,'static',]
+STATIC_ROOT = [BASE_DIR,'static',]
 
 MEDIA_ROOT = BASE_DIR/'media'
 MEDIA_URL = '/image/'
